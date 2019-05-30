@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.tab1_fragment_mis_canciones.*
 
 class MisCancionesFragment : Fragment(){
 
+    private lateinit var adapter : SongAddapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.tab1_fragment_mis_canciones, container, false)
         return view

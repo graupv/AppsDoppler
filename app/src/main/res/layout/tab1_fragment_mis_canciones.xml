@@ -20,8 +20,8 @@
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/rv"
-            android:layout_width="391dp"
-            android:layout_height="555dp"
+            android:layout_width="381dp"
+            android:layout_height="671dp"
             android:layout_marginEnd="18dp"
             android:layout_marginRight="18dp"
             android:layout_marginBottom="89dp"
@@ -33,7 +33,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.511"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="1.0"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+    >
+
 
     </android.support.v7.widget.RecyclerView>
 
