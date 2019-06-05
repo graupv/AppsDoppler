@@ -1,6 +1,7 @@
 package com.example.appsdoppler
 
 import android.content.Context
+import android.os.Environment
 import android.support.v7.view.menu.ActionMenuItemView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,7 +10,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class SongAddapter(val context: Context, val songs: List<SongModel>) : RecyclerView.Adapter<SongAddapter.SongHolder>() {
-
+    var folder = Environment.getExternalStorageDirectory().path + "/Doppler/"
     var data = listOf<SongModel>()
     set(value) {
         field = value

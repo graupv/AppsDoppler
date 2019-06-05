@@ -50,34 +50,40 @@ public class GrabarFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GrabarFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static GrabarFragment newInstance(String param1, String param2) {
-        GrabarFragment fragment = new GrabarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    /**
+//     * Use this factory method to create a new instance of
+//     * this fragment using the provided parameters.
+//     *
+//     * @param param1 Parameter 1.
+//     * @param param2 Parameter 2.
+//     * @return A new instance of fragment GrabarFragment.
+//     */
+//    // TODO: Rename and change types and number of parameters
+//    public static GrabarFragment newInstance(String param1, String param2) {
+//        GrabarFragment fragment = new GrabarFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
 
         btn_recorder = (Button) btn_recorder.findViewById(R.id.btn_rec);
-
+        btn_recorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("onCreate onclick for recorder");
+                Recorder(v);
+            }
+        });
 
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1000);
@@ -119,16 +125,8 @@ public class GrabarFragment extends Fragment {
         btn_player.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MediaPlayer mediaPlayer = new MediaPlayer();
-                try{
-                    mediaPlayer.setDataSource(archivoSalida);
-                    mediaPlayer.prepare();
-                }catch(IOException e){
-
-                }
-
-                mediaPlayer.start();
-                Toast.makeText(getContext(), "Reproduciendo audio.", Toast.LENGTH_SHORT).show();
+                System.out.println("set onclick reproducir, onCreate");
+                reproducir(v);
 
             }
         });
@@ -138,7 +136,23 @@ public class GrabarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        btn_player = (Button) btn_player.findViewById(R.id.btn_play);
+        btn_player.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("set onclick reproducir in oncreateview");
+                reproducir(v);
 
+            }
+        });
+
+        btn_recorder = (Button) btn_recorder.findViewById(R.id.btn_rec);
+        btn_recorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Recorder(v);
+            }
+        });
         return inflater.inflate(R.layout.grabadora, container, false);
     }
 
@@ -149,6 +163,8 @@ public class GrabarFragment extends Fragment {
         }
     }
 
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -156,7 +172,7 @@ public class GrabarFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " mustfaf awe implement OnFragmentInteractionListener");
         }
     }
 
@@ -184,7 +200,7 @@ public class GrabarFragment extends Fragment {
 
 
     public void Recorder(View v){
-
+        System.out.println("recorder");
         if(grabacion == null){
             archivoSalida = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Grabacion.mp3";
             grabacion = new MediaRecorder();
@@ -215,7 +231,7 @@ public class GrabarFragment extends Fragment {
     }
 
     public void reproducir(View view){
-
+        System.out.println("reproducir");
         MediaPlayer mediaPlayer = new MediaPlayer();
         try{
             mediaPlayer.setDataSource(archivoSalida);
