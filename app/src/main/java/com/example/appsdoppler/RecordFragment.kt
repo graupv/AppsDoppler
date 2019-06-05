@@ -95,6 +95,7 @@ class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
             println(filename)
             med_rec.release()
             var med_rec: MediaRecorder? = null
+
             //  rebind para volver a grabar
             btn_rec.setOnClickListener {
                 println("****rebind to record")
@@ -115,7 +116,7 @@ class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
             } else {
             println("***** Folder exists")
             println("***HAS: " + n.toString() + " recordings")
-        }
+            }
         }
 
     }

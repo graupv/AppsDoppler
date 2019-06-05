@@ -2,15 +2,18 @@ package com.example.appsdoppler;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import java.io.*;
 
 public class Reproductor extends AppCompatActivity {
 
+    String folder = Environment.getExternalStorageDirectory().getPath()+ "/Doppler/";
     Button play_pause, btn_repetir;
     MediaPlayer mp;
     int repetir = 2, posicion = 0;
@@ -18,7 +21,13 @@ public class Reproductor extends AppCompatActivity {
     MediaPlayer vectormp [] = new MediaPlayer[3];
 
 
-
+    void doThing(){
+        File f = new File(folder);
+        String[] songs = f.list();
+        if (songs.length > 0){
+            System.out.println("Tenemos: " + songs.length + " grabaciones.");
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

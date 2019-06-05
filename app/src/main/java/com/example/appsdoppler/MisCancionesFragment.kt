@@ -19,23 +19,32 @@ import java.io.File
 
 class MisCancionesFragment : Fragment(){
     private var recyclerView : RecyclerView? = null
+    private lateinit var adp : MyAdapter
     var folder = Environment.getExternalStorageDirectory().path + "/Doppler/"
 //    private var lateinit rv: Recycler
-    private lateinit var adapter : MyAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var songs = File(folder).list()
         var songarr = ArrayList<Song>()
         for (i in songs.indices){
             var s = songs.get(i)
             songarr.add(Song(s, 20))
+            println(i)
         }
+        adp = MyAdapter(songarr)
+
+        return inflater.inflate(R.layout.tab1_fragment_mis_canciones, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view?.findViewById(R.id.rv) as? RecyclerView
         recyclerView?.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        var adp = MyAdapter(songarr)
         recyclerView?.adapter = adp
+//        recyclerView?.nested
+        adp.notifyDataSetChanged()
 
-        return inflater.inflate(R.layout.tab1_fragment_mis_canciones, container, false)
     }
 
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 
 class MyAdapter(val songList: ArrayList<Song>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
@@ -16,6 +17,10 @@ class MyAdapter(val songList: ArrayList<Song>) : RecyclerView.Adapter<MyAdapter.
     //this method is binding the data on the list
     override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
         holder.bindItems(songList[position])
+        holder.itemView.setOnClickListener {
+            //  llamar al intent con la siguiente actividad por cancion
+            //  hay que hacer activiity para los detalles y reproducir la cancion
+        }
     }
 
     //this method is giving the size of the list
