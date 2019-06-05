@@ -1,6 +1,3 @@
 package com.example.appsdoppler
 
-public class Song (name: String){
-    val name = name
-    
-}
+data class Song (val name: String, val dur: Int)

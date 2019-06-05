@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class SongAddapter(val context: Context, val songs: List<SongModel>) : RecyclerView.Adapter<SongAddapter.SongHolder>() {
+class SongAdapter(val context: Context, val songs: List<SongModel>) : RecyclerView.Adapter<SongAdapter.SongHolder>() {
     var folder = Environment.getExternalStorageDirectory().path + "/Doppler/"
     var data = listOf<SongModel>()
     set(value) {
@@ -33,7 +33,7 @@ class SongAddapter(val context: Context, val songs: List<SongModel>) : RecyclerV
 
     inner class SongHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setData(songModel: SongModel?){
-            itemView.txvTitle.text = songModel!!.title
+//            itemView.txvTitle.text = songModel!!.title
 
         }
 
