@@ -1,5 +1,6 @@
 package com.example.appsdoppler
 
+import android.media.MediaRecorder
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v4.app.Fragment
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.tab1_fragment_mis_canciones.*
 class RecordFragment : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.tab2_fragment_grabar, container, false)
+        val view = inflater.inflate(R.layout.grabadora, container, false)
         return view
     }
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#649EA7"
+    tools:context=".GrabarFragment">
+
+    <Button
+            android:id="@+id/btn_rec"
+            android:layout_width="171dp"
+            android:layout_height="171dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/stop_rec"
+            android:onClick="Recorder"
+            android:text="Record"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_play"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.859" android:layout_marginRight="8dp"/>
+
+    <Button
+            android:id="@+id/btn_play"
+            android:layout_width="171dp"
+            android:layout_height="171dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/reproducir"
+            android:onClick="reproducir"
+            android:text="play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.86" android:layout_marginRight="23dp"/>
+</android.support.constraint.ConstraintLayout>
