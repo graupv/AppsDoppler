@@ -21,6 +21,7 @@ import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
+    public lateinit var playing : String
     private lateinit var tablayout : TabLayout
     private lateinit var appbar : AppBarLayout
     private lateinit var viewpager : ViewPager

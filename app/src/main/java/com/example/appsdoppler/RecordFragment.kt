@@ -22,7 +22,7 @@ import java.io.IOException
 
 class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
     var folder = Environment.getExternalStorageDirectory().path + "/Doppler/"
-    var n = File(folder).list().size
+    var n: Int = 0
     override fun onCompletion(mp: MediaPlayer?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -105,6 +105,7 @@ class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
 
     fun directory(){
         val f = File(folder)
+
         if (!f.exists()){
             try {
                 f.mkdir()
@@ -114,6 +115,7 @@ class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
                 e.printStackTrace()
                 }
             } else {
+            var n = File(folder).list().size
             println("***** Folder exists")
             println("***HAS: " + n.toString() + " recordings")
             }

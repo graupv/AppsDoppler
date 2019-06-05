@@ -26,6 +26,8 @@ class MyAdapter(val songList: ArrayList<Song>) : RecyclerView.Adapter<MyAdapter.
             //  hay que hacer activiity para los detalles y reproducir la cancion
             val context: Context = holder.itemView.context
             val intent = Intent(context, Reproductor::class.java)
+            val m = MainActivity()
+            m.playing = songList[position].name
             startActivity(context, intent, intent.extras)
 
         }
