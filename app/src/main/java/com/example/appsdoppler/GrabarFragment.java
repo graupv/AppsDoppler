@@ -78,6 +78,7 @@ public class GrabarFragment extends Fragment {
 
         btn_recorder = (Button) btn_recorder.findViewById(R.id.btn_rec);
 
+
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1000);
         }
@@ -137,6 +138,7 @@ public class GrabarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.grabadora, container, false);
     }
 
@@ -179,6 +181,8 @@ public class GrabarFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+
+
     public void Recorder(View v){
 
         if(grabacion == null){
@@ -193,6 +197,7 @@ public class GrabarFragment extends Fragment {
                 grabacion.prepare();
                 grabacion.start();
             } catch(IOException e){
+                e.printStackTrace();
             }
 
             btn_recorder.setBackgroundResource(R.drawable.rec);
@@ -216,7 +221,7 @@ public class GrabarFragment extends Fragment {
             mediaPlayer.setDataSource(archivoSalida);
             mediaPlayer.prepare();
         }catch(IOException e){
-
+            e.printStackTrace();
         }
 
         mediaPlayer.start();
