@@ -1,6 +1,7 @@
 package com.example.appsdoppler;
 
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import java.io.*;
+import java.net.URI;
 
 public class Reproductor extends AppCompatActivity {
 
@@ -17,24 +19,34 @@ public class Reproductor extends AppCompatActivity {
     Button play_pause, btn_repetir;
     MediaPlayer mp;
     int repetir = 2, posicion = 0;
+    File[] songs;
 
-    MediaPlayer vectormp [] = new MediaPlayer[3];
-
+    MediaPlayer vectormp [] = new MediaPlayer[999];
 
     void doThing(){
+        //  popular lista
         File f = new File(folder);
-        String[] songs = f.list();
+        songs = f.listFiles();
         if (songs.length > 0){
+            System.out.println(songs[0]);
             System.out.println("Tenemos: " + songs.length + " grabaciones.");
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reproductor);
-
+        doThing();
         play_pause = (Button)findViewById(R.id.btn_play);
         btn_repetir = (Button) findViewById(R.id.btn_shuffle);
+//
+        for (int i = 0; i < songs.length; i++) {
+        Uri uri = Uri.parse(songs[i].getAbsolutePath());
+
+            vectormp[i] = MediaPlayer.create(this, uri);
+        }
+
     }
 
     public void PlayPause(View view){
@@ -45,7 +57,7 @@ public class Reproductor extends AppCompatActivity {
         }else{
             vectormp[posicion].start();
             play_pause.setBackgroundResource((R.drawable.pausa));
-            Toast.makeText(this, "Play", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, songs[posicion].getName(), Toast.LENGTH_SHORT).show();
         }
     }
 

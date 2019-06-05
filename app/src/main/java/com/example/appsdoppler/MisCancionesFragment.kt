@@ -23,7 +23,7 @@ class MisCancionesFragment : Fragment(){
     var folder = Environment.getExternalStorageDirectory().path + "/Doppler/"
 //    private var lateinit rv: Recycler
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    public override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var songs = File(folder).list()
         var songarr = ArrayList<Song>()
         for (i in songs.indices){
@@ -36,7 +36,7 @@ class MisCancionesFragment : Fragment(){
         return inflater.inflate(R.layout.tab1_fragment_mis_canciones, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    public override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view?.findViewById(R.id.rv) as? RecyclerView
@@ -44,6 +44,7 @@ class MisCancionesFragment : Fragment(){
         recyclerView?.adapter = adp
 //        recyclerView?.nested
         adp.notifyDataSetChanged()
+
 
     }
 
