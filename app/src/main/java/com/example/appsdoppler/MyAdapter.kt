@@ -1,5 +1,8 @@
 package com.example.appsdoppler
 
+import android.content.Context
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +20,14 @@ class MyAdapter(val songList: ArrayList<Song>) : RecyclerView.Adapter<MyAdapter.
     //this method is binding the data on the list
     override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
         holder.bindItems(songList[position])
+//        val Context =
         holder.itemView.setOnClickListener {
             //  llamar al intent con la siguiente actividad por cancion
             //  hay que hacer activiity para los detalles y reproducir la cancion
+            val context: Context = holder.itemView.context
+            val intent = Intent(context, Reproductor::class.java)
+            startActivity(context, intent, intent.extras)
+
         }
     }
 
