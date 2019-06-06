@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appbar : AppBarLayout
     private lateinit var viewpager : ViewPager
 
+
     var folder = Environment.getExternalStorageDirectory().path + "/Doppler/"
 
     override fun onCreate(savedInstanceState: Bundle?) {

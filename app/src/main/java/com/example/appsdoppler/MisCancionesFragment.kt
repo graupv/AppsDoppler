@@ -35,8 +35,9 @@ class MisCancionesFragment : Fragment(){
         }
 
         adp = MyAdapter(songarr)
-        var inf = Info.getInstance()
-        inf.ma = adp
+        adp.notifyDataSetChanged()
+        val infos : Info = Info.getInstance()
+        infos.ma = adp.getInstance()
 
         return inflater.inflate(R.layout.tab1_fragment_mis_canciones, container, false)
     }
@@ -46,9 +47,10 @@ class MisCancionesFragment : Fragment(){
 
         recyclerView = view.findViewById(R.id.rv) as? RecyclerView
         recyclerView?.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+        adp.notifyDataSetChanged()
         recyclerView?.adapter = adp
 //        recyclerView?.nested
-        adp.notifyDataSetChanged()
+
 
 
     }

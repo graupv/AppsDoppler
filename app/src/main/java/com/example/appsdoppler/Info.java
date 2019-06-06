@@ -60,8 +60,9 @@ public class Info {
 
     public void updateAdapter(){
         if (Ma != null){
-            System.out.println("called update adapter");
             Ma.notifyDataSetChanged();
+            System.out.println("called update adapter");
+
         }
 
     }

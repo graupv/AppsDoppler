@@ -22,13 +22,13 @@ import java.io.IOException
 
 class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
     var folder = Environment.getExternalStorageDirectory().path + "/Doppler/"
-    var n: Int = 1
+    var n: Int = 0
 
     override fun onCompletion(mp: MediaPlayer?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    var inf : Info = Info.getInstance()
+    val infos : Info = Info.getInstance()
     lateinit var btn_rec: Button
     lateinit var btn_rep: Button
     private lateinit var med_rec: MediaRecorder
@@ -94,9 +94,12 @@ class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
             med_rec.stop()
             Toast.makeText(context, "Fin de Grabacion", Toast.LENGTH_SHORT).show()
             println(filename)
+            med_rec.reset()
             med_rec.release()
             var med_rec: MediaRecorder? = null
-            inf.updateAdapter()
+
+            infos.updateAdapter()
+            infos.ma.notifyDataSetChanged()
 //            var ma = MyAdapter().getInstance()
             //  rebind para volver a grabar
             btn_rec.setOnClickListener {
@@ -112,12 +115,13 @@ class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
             try {
                 f.mkdir()
                 println("*****folder directory created")
+                n = 0
             } catch (e: Exception){
                 println("*****Unable to create directory")
                 e.printStackTrace()
                 }
             } else {
-            var n = File(folder).list().size
+            n = File(folder).list().size
             println("***** Folder exists")
             println("***HAS: " + n.toString() + " recordings")
             }

@@ -12,9 +12,12 @@
             android:gravity="center"
             android:elevation="0dp"
             android:id="@+id/appbarid">
+        <Spinner
+                android:layout_width="386dp"
+                android:layout_height="wrap_content" android:id="@+id/spinner"/>
         <ImageView
-                android:layout_width="398dp"
-                android:layout_height="108dp"
+                android:layout_width="212dp"
+                android:layout_height="77dp"
                 android:padding="10dp"
                 android:src="@drawable/play_circle"
         />
