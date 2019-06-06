@@ -22,12 +22,13 @@ import java.io.IOException
 
 class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
     var folder = Environment.getExternalStorageDirectory().path + "/Doppler/"
-    var n: Int = 0
+    var n: Int = 1
+
     override fun onCompletion(mp: MediaPlayer?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-
+    var inf : Info = Info.getInstance()
     lateinit var btn_rec: Button
     lateinit var btn_rep: Button
     private lateinit var med_rec: MediaRecorder
@@ -95,7 +96,8 @@ class RecordFragment : Fragment(), MediaPlayer.OnCompletionListener{
             println(filename)
             med_rec.release()
             var med_rec: MediaRecorder? = null
-
+            inf.updateAdapter()
+//            var ma = MyAdapter().getInstance()
             //  rebind para volver a grabar
             btn_rec.setOnClickListener {
                 println("****rebind to record")

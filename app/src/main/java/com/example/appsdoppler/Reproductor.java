@@ -20,6 +20,7 @@ public class Reproductor extends AppCompatActivity {
     MediaPlayer mp;
     int repetir = 2, posicion = 0;
     File[] songs;
+    Info infos;
 
     MediaPlayer vectormp [] = new MediaPlayer[999];
 
@@ -28,21 +29,22 @@ public class Reproductor extends AppCompatActivity {
         File f = new File(folder);
         songs = f.listFiles();
         if (songs.length > 0){
-            System.out.println(songs[0]);
+//            System.out.println(songs[0]);
             System.out.println("Tenemos: " + songs.length + " grabaciones.");
         }
     }
-
+    Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reproductor);
         doThing();
+        infos = Info.getInstance();
         play_pause = (Button)findViewById(R.id.btn_play);
         btn_repetir = (Button) findViewById(R.id.btn_shuffle);
 //
         for (int i = 0; i < songs.length; i++) {
-        Uri uri = Uri.parse(songs[i].getAbsolutePath());
+        uri = Uri.parse(songs[i].getAbsolutePath());
 
             vectormp[i] = MediaPlayer.create(this, uri);
         }
@@ -50,20 +52,21 @@ public class Reproductor extends AppCompatActivity {
     }
 
     public void PlayPause(View view){
-        if(vectormp[posicion].isPlaying()){
-            vectormp[posicion].pause();
+        if(vectormp[infos.getPos()].isPlaying()){
+            vectormp[infos.getPos()].pause();
             play_pause.setBackgroundResource(R.drawable.reproducir);
             Toast.makeText(this, "Pausa", Toast.LENGTH_SHORT).show();
         }else{
-            vectormp[posicion].start();
+//            vectormp[posicion] = MediaPlayer.create(this, uri.parse(inf.songPath));
+            vectormp[infos.getPos()].start();
             play_pause.setBackgroundResource((R.drawable.pausa));
-            Toast.makeText(this, songs[posicion].getName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, songs[infos.getPos()].getName(), Toast.LENGTH_SHORT).show();
         }
     }
 
     public void Stop(View v){
-        if(vectormp[posicion] != null){
-            vectormp[posicion].stop();
+        if(vectormp[infos.getPos()] != null){
+            vectormp[infos.getPos()].stop();
 
             posicion = 0;
             play_pause.setBackgroundResource(R.drawable.reproducir);
